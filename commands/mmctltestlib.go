@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	INSTANCE_URL      = "http://localhost:8065"
+	INSTANCE_URL      = "http://mattermost_circleci:8065"
 	SYSADMIN_USERNAME = "sysadmin"
 	SYSADMIN_PASS     = "Sys@dmin-sample1"
 	USER_USERNAME     = "user-1"

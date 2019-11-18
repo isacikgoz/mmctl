@@ -145,7 +145,7 @@ func (Test) Unit() error {
 	if err != nil {
 		return err
 	}
-	args := append([]string{"test", "-race", "-v", "-count", "1", "-tags", "unit"}, packages...)
+	args := append([]string{"test", "-mod=vendor", "-race", "-v", "-count", "1", "-tags", "unit"}, packages...)
 	sh.RunV("go", args...)
 	return nil
 }
@@ -157,7 +157,7 @@ func (Test) E2e() error {
 	if err != nil {
 		return err
 	}
-	args := append([]string{"test", "-race", "-v", "-count", "1", "-tags", "e2e"}, packages...)
+	args := append([]string{"test", "-mod=vendor", "-race", "-v", "-count", "1", "-tags", "e2e"}, packages...)
 	sh.RunV("go", args...)
 	return nil
 }
@@ -169,7 +169,7 @@ func (Test) All() error {
 	if err != nil {
 		return err
 	}
-	args := append([]string{"test", "-race", "-v", "-count", "1", "-tags", "unit e2e"}, packages...)
+	args := append([]string{"test", "-mod=vendor", "-race", "-v", "-count", "1", "-tags", "unit e2e"}, packages...)
 	sh.RunV("go", args...)
 	return nil
 }
