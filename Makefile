@@ -53,9 +53,13 @@ govet:
 	$(GO) vet -vettool=$(GOPATH)/bin/shadow $(GO_PACKAGES)
 	@echo Govet success
 
+unit-test:
+	@echo Running unit tests
+	$(GO) test -race -v $(GO_PACKAGES)
+
 test:
 	@echo Running tests
-	$(GO) test -race -v $(GO_PACKAGES)
+	$(GO) test -race -v -tags e2e $(GO_PACKAGES)
 
 check: gofmt govet
 

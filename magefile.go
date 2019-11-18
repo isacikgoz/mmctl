@@ -132,14 +132,26 @@ func Govet() error {
 	return nil
 }
 
-// Runs the test suite
-func Test() error {
-	fmt.Println("Running tests")
+// Runs the unit test suite
+func UnitTest() error {
+	fmt.Println("Running unit tests")
 	packages, err := getPackages()
 	if err != nil {
 		return err
 	}
-	args := append([]string{"test", "-race", "-v"}, packages...)
+	args := append([]string{"test", "-race", "-v", "-count", "1"}, packages...)
+	sh.RunV("go", args...)
+	return nil
+}
+
+// Runs all the test suites
+func Test() error {
+	fmt.Println("Running all tests")
+	packages, err := getPackages()
+	if err != nil {
+		return err
+	}
+	args := append([]string{"test", "-race", "-v", "-count", "1", "-tags", "e2e"}, packages...)
 	sh.RunV("go", args...)
 	return nil
 }
