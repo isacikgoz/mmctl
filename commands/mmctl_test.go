@@ -1,6 +1,8 @@
 package commands
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/mattermost/mmctl/mocks"
@@ -30,6 +32,27 @@ func (s *MmctlUnitTestSuite) TearDownTest() {
 	printer.Clean()
 }
 
+type MmctlE2ETestSuite struct {
+	suite.Suite
+	th *TestHelper
+}
+
+func (s *MmctlE2ETestSuite) SetupSuite() {
+	printer.SetFormat(printer.FORMAT_JSON)
+
+	var err error
+	if s.th, err = setupTestHelper(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error initialising E2E test helper. %s\n", err)
+		fmt.Fprintln(os.Stderr, "Aborting E2E test execution")
+		os.Exit(1)
+	}
+}
+
+func (s *MmctlE2ETestSuite) TearDownTest() {
+	printer.Clean()
+}
+
 func TestMmctlSuite(t *testing.T) {
 	suite.Run(t, new(MmctlUnitTestSuite))
+	suite.Run(t, new(MmctlE2ETestSuite))
 }
