@@ -1,5 +1,3 @@
-// +build e2e
-
 package commands
 
 import (
@@ -9,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func (s *MmctlE2ETestSuite) TestE2ESearchUserCmd() {
+func (s *MmctlE2ETestSuite) TestSearchUserCmd() {
 	s.Run("Search for an existing user", func() {
 		printer.Clean()
 

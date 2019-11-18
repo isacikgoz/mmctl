@@ -3,7 +3,6 @@ package commands
 import (
 	"fmt"
 	"os"
-	"testing"
 
 	"github.com/mattermost/mmctl/mocks"
 	"github.com/mattermost/mmctl/printer"
@@ -50,9 +49,4 @@ func (s *MmctlE2ETestSuite) SetupSuite() {
 
 func (s *MmctlE2ETestSuite) TearDownTest() {
 	printer.Clean()
-}
-
-func TestMmctlSuite(t *testing.T) {
-	suite.Run(t, new(MmctlUnitTestSuite))
-	suite.Run(t, new(MmctlE2ETestSuite))
 }
